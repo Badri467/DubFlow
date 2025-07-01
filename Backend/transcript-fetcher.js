@@ -42,8 +42,8 @@ const fetchTranscriptWithRetry = async (videoId, maxRetries = RETRY_CONFIG.maxRe
                     console.log(`✅ Successfully fetched transcript with ${transcript.length} segments`);
                     return transcript.map(item => ({
                         text: item.text,
-                        start: parseFloat(item.offset) / 1000,
-                        duration: parseFloat(item.duration) / 1000
+                        start: parseFloat(item.offset),
+                        duration: parseFloat(item.duration)
                     }));
                 }
             } catch (error) {
@@ -88,8 +88,8 @@ const fetchTranscriptWithRetry = async (videoId, maxRetries = RETRY_CONFIG.maxRe
                     console.log(`✅ Success with alternative format!`);
                     return transcript.map(item => ({
                         text: item.text,
-                        start: parseFloat(item.offset) / 1000,
-                        duration: parseFloat(item.duration) / 1000
+                        start: parseFloat(item.offset),
+                        duration: parseFloat(item.duration)
                     }));
                 }
             } catch (altError) {
@@ -137,8 +137,8 @@ const tryManualTranscriptExtraction = async (videoId) => {
                 console.log('✅ Manual extraction successful!');
                 return transcript.map(item => ({
                     text: item.text,
-                    start: parseFloat(item.start || item.offset) / 1000,
-                    duration: parseFloat(item.dur || item.duration) / 1000
+                    start: parseFloat(item.start || item.offset),
+                    duration: parseFloat(item.dur || item.duration)
                 }));
             }
         }
